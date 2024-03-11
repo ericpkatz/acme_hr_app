@@ -78,6 +78,10 @@ app.get('/api/departments', async(req, res, next)=> {
   }
 });
 
+app.use((err, req, res, next)=> {
+  res.status(err.status || 500).send({ error: err.message || err});
+});
+
 
 const init = async()=> {
   console.log('connecting to database');
